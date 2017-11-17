@@ -1,189 +1,82 @@
 ---
-title: API Reference
+title: BERDE GBRS – New Construction – Version 2.0.0
 
 language_tabs:
-  - shell
-  - ruby
-  - python
-  - javascript
+  - shell: Addenda
 
 toc_footers:
-  - <a href='#'>Sign Up for a Developer Key</a>
-  - <a href='https://github.com/tripit/slate'>Documentation Powered by Slate</a>
+  - <a href='mailto:berde@philgbc.org'>Contact us</a>
+  - <a href='http://philgbc.org'>Developed by PHILGBC</a>
 
 includes:
-  - errors
+  - copyright.md
+  - terms.md
+  - navigate.md
+  - about-berde.md
+  - about-certification.md
+  - min_sys_req.md
+  - about-nc.md
+  - en/en.md
+  - en/EN-01.md
+  - en/EN-02.md
+  - en/EN-03.md
+  - en/EN-04.md
+  - en/EN-05.md
+  - en/EN-06.md
+  - en/EN-07.md
+  - en/EN-08.md
+  - wt/wt.md
+  - wt/WT-01.md
+  - wt/WT-02.md
+  - wt/WT-03.md
+  - wt/WT-04.md
+  - ws/ws.md
+  - ws/WS-01.md
+  - ws/WS-02.md
+  - mn/mn.md
+  - mn/MN-01.md
+  - mn/MN-02.md
+  - mn/MN-03.md
+  - le/le.md
+  - le/LE-01.md
+  - le/LE-02.md
+  - le/LE-03.md
+  - le/LE-04.md
+  - le/LE-05.md
+  - le/LE-06.md
+  - tr/tr.md
+  - tr/TR-01.md
+  - tr/TR-02.md
+  - tr/TR-03.md
+  - tr/TR-04.md
+  - tr/TR-05.md
+  - tr/TR-06.md
+  - tr/TR-07.md
+  - tr/TR-08.md
+  - mt/mt.md
+  - mt/MT-01.md
+  - mt/MT-02.md
+  - eq/eq.md
+  - eq/EQ-01.md
+  - eq/EQ-02.md
+  - eq/EQ-03.md
+  - eq/EQ-04.md
+  - eq/EQ-05.md
+  - eq/EQ-06.md
+  - eq/EQ-07.md
+  - eq/EQ-08.md
+  - em/em.md
+  - em/EM-01.md
+  - em/EM-02.md
+  - em/EM-03.md
 
 search: true
 ---
 
-# Introduction
+<figure><img src="/images/img-cover-BERDE-NC-v2.0.0-User_Guide.png"></figure>
+<div class="t1"><i class="berde">BERDE</i> GBRS --</div>
+<div class="t1 green" style="text-transform:uppercase">New Construction</div>
+<div class="t3">Version 2.0.0</div><br>
 
-Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.
-
-We have language bindings in Shell, Ruby, and Python! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
-
-This example API documentation page was created with [Slate](https://github.com/tripit/slate). Feel free to edit it and use it as a base for your own API's documentation.
-
-# Authentication
-
-> To authorize, use this code:
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-```
-
-```shell
-# With shell, you can just pass the correct header with each request
-curl "api_endpoint_here"
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-```
-
-> Make sure to replace `meowmeowmeow` with your API key.
-
-Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our [developer portal](http://example.com/developers).
-
-Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:
-
-`Authorization: meowmeowmeow`
-
-<aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
-</aside>
-
-# Kittens
-
-## Get All Kittens
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get()
-```
-
-```shell
-curl "http://example.com/api/kittens"
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let kittens = api.kittens.get();
-```
-
-> The above command returns JSON structured like this:
-
-```json
-[
-  {
-    "id": 1,
-    "name": "Fluffums",
-    "breed": "calico",
-    "fluffiness": 6,
-    "cuteness": 7
-  },
-  {
-    "id": 2,
-    "name": "Max",
-    "breed": "unknown",
-    "fluffiness": 5,
-    "cuteness": 10
-  }
-]
-```
-
-This endpoint retrieves all kittens.
-
-### HTTP Request
-
-`GET http://example.com/api/kittens`
-
-### Query Parameters
-
-Parameter | Default | Description
---------- | ------- | -----------
-include_cats | false | If set to true, the result will also include cats.
-available | true | If set to false, the result will include kittens that have already been adopted.
-
-<aside class="success">
-Remember — a happy kitten is an authenticated kitten!
-</aside>
-
-## Get a Specific Kitten
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```shell
-curl "http://example.com/api/kittens/2"
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let max = api.kittens.get(2);
-```
-
-> The above command returns JSON structured like this:
-
-```json
-{
-  "id": 2,
-  "name": "Max",
-  "breed": "unknown",
-  "fluffiness": 5,
-  "cuteness": 10
-}
-```
-
-This endpoint retrieves a specific kitten.
-
-<aside class="warning">Inside HTML code blocks like this one, you can't use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
-
-### HTTP Request
-
-`GET http://example.com/kittens/<ID>`
-
-### URL Parameters
-
-Parameter | Description
---------- | -----------
-ID | The ID of the kitten to retrieve
-
+<div class="t2">User Guide</div>
+<div class="t4">Release 1.0</div><br>

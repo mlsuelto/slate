@@ -20,11 +20,18 @@ under the License.
 */
 
 $print-color: #999;
-$print-color-light: #ccc;
-$print-font-size: 12px;
+$print-color-light: #B8B6B6;
+$print-font-color: #383535;
+$print-font-size: 11pt;
 
 body {
   @extend %default-font;
+  color: $print-font-color;
+  margin-top: 2.54cm;
+  margin-bottom: 2.54cm;
+  width: 21cm;
+  height: 29.7cm;
+  -webkit-print-color-adjust: exact;
 }
 
 .tocify, .toc-footer, .lang-selector, .search, #nav-button {
@@ -32,72 +39,113 @@ body {
 }
 
 .tocify-wrapper>img {
-  margin: 0 auto;
-  display: block;
+  display: none;
 }
 
 .content {
-  font-size: 12px;
+  margin-left:2.54cm;
+  margin-right:2.54cm;
+
+  blockquote {
+    border: 1px;
+    background-color: rgba(0,0,0,0.05);
+    padding: 1em;
+    margin:auto;
+  }
 
   pre, code {
     @extend %code-font;
     @extend %break-words;
-    border: 1px solid $print-color;
-    border-radius: 5px;
-    font-size: 0.8em;
-  }
-
-  pre {
-    code {
-      border: 0;
-    }
+    border: none;
+    color: $print-font-color !important;
+    font-size: 9pt;
   }
 
   pre {
     padding: 1.3em;
+    background-color: rgba(0,0,0,0.05);
+
+    code {
+      border: 0;
+      background-color:none;
+    }
   }
 
   code {
     padding: 0.2em;
+    margin: auto;
+    background-color: rgba(0,0,0,0.05);
+    font-size: 9pt;
+  }
+
+  pre>code {
+    background-color: transparent;
+    padding: 0;
   }
 
   table {
-    border: 1px solid $print-color;
-    tr {
-      border-bottom: 1px solid $print-color;
-    }
+    margin-bottom: 1em;
+    overflow: auto;
+    page-break-inside: avoid;
+
     td,th {
       padding: 0.7em;
     }
   }
 
+  th {
+    padding: 5px 10px;
+    border-bottom: 1px solid #ccc;
+    vertical-align: bottom;
+    text-align: left;
+  }
+
+  td {
+    padding: 10px;
+  }
+
+  tr:last-child {
+    border-bottom: 1px solid #ccc;
+  }
+
+  th:empty {
+    visibility: hidden;
+  }
+
+  li {
+    margin:0;
+    line-height: 1.3;
+  }
+
   p {
-    line-height: 1.5;
+    line-height: 1.3;
   }
 
   a {
-    text-decoration: none;
-    color: #000;
+    text-decoration: underline;
+    color: $philgbc_green;
   }
 
   h1 {
     @extend %header-font;
-    font-size: 2.5em;
-    padding-top: 0.5em;
+    font-size: 24pt;
+    color: $philgbc_blue;
+    padding-top: 0;
     padding-bottom: 0.5em;
-    margin-top: 1em;
+    margin-top: 0;
     margin-bottom: $h1-margin-bottom;
-    border: 2px solid $print-color-light;
-    border-width: 2px 0;
-    text-align: center;
+    page-break-before: always;
   }
 
   h2 {
     @extend %header-font;
-    font-size: 1.8em;
-    margin-top: 2em;
-    border-top: 2px solid $print-color-light;
-    padding-top: 0.8em;
+    font-size: 20pt;
+    color: $philgbc_blue;
+    padding-top: 0;
+    padding-bottom: .5em;
+    margin-top: 0;
+    margin-bottom: 0;
+    page-break-before: always;
   }
 
   h1+h2, h1+div+h2 {
@@ -106,25 +154,69 @@ body {
     margin-top: 0;
   }
 
-  h3, h4 {
+  h3 {
     @extend %header-font;
-    font-size: 0.8em;
+    font-size: 18pt;
     margin-top: 1.5em;
     margin-bottom: 0.8em;
-    text-transform: uppercase;
   }
 
-  h5, h6 {
-    text-transform: uppercase;
+  h4 {
+    @extend %header-font;
+    font-size: 16pt;
+    margin-top: 1.5em;
+    margin-bottom: 0.8em;
+  }
+
+  h5 {
+    @extend %header-font;
+    font-size: 16pt;
+    font-style: italic;
+    margin-top: 1.5em;
+    margin-bottom: 0.8em;
+  }
+
+  h6 {
+    font-size: 14pt;
+    margin-top: 1.5em;
+    margin-bottom: 0.8em;
   }
 
   aside {
     padding: 1em;
-    border: 1px solid $print-color-light;
-    border-radius: 5px;
     margin-top: 1.5em;
     margin-bottom: 1.5em;
-    line-height: 1.6;
+    line-height: 1.3;
+    page-break-inside: avoid;
+
+    p {
+      margin-right: 0cm;
+      margin-left: 0cm;
+    }
+
+    &.info {
+      background-color: none;
+      border: 1px solid $aside-info-bg;
+      color: $aside-info-bg;
+    }
+
+    &.warning {
+      background-color: none;
+      border: 1px solid $aside-warning-bg;
+      color: $aside-warning-bg;
+    }
+
+    &.success {
+      background-color: none;
+      border: 1px solid $aside-success-bg;
+      color: $aside-success-bg;
+    }
+
+    &.danger {
+      background-color: none;
+      border: 1px solid $aside-danger-bg;
+      color: $aside-danger-bg;
+    }
   }
 
   aside:before {
@@ -133,15 +225,111 @@ body {
     font-size: 14px;
   }
 
-  aside.notice:before {
+  aside.success:before {
+    @extend %icon-success-sign;
+  }
+
+  aside.info:before {
     @extend %icon-info-sign;
   }
 
   aside.warning:before {
-    @extend %icon-exclamation-sign;
+    @extend %icon-warning-sign;
   }
 
-  aside.success:before {
-    @extend %icon-ok-sign;
+  aside.danger:before {
+    @extend %icon-danger-sign;
+  }
+}
+
+
+/// Additional CSS ///
+
+img {
+  max-width: 100%;
+}
+
+figure {
+  margin-top: 3.2cm;
+  padding-bottom: 30pt;
+  margin-left:-2.54cm;
+  margin-right:-2.54cm;
+}
+
+figure>.content{
+  margin: 0cm;
+}
+
+.t1 {
+  font-size: 36pt;
+  line-height: 1;
+}
+
+.t2 {
+  font-size: 30pt;
+  line-height: 1;
+}
+
+.t3 {
+  font-size: 20pt;
+  line-height: 1;
+}
+.t4 {
+  font-size: 11pt;
+  line-height: 1;
+}
+
+.berde {
+  font-size: 40pt;
+  color: $philgbc_blue;
+  letter-spacing: -3px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.green {
+  color: $philgbc_green;
+  letter-spacing: -1px;
+  text-transform: uppercase;
+}
+
+.blue {
+  color: $philgbc_blue;
+  letter-spacing: -1px;
+  text-transform: uppercase;
+}
+
+.yellow {
+  color: $philgbc_yellow;
+  letter-spacing: -1px;
+  text-transform: uppercase;
+}
+
+
+pre {
+ white-space: pre-wrap;       /* css-3 */
+ white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
+ white-space: -pre-wrap;      /* Opera 4-6 */
+ white-space: -o-pre-wrap;    /* Opera 7 */
+ word-wrap: break-word;       /* Internet Explorer 5.5+ */
+}
+
+/// Page Settings ///
+@page {
+  size: A4;
+  margin: 0;
+  margin-top: 2.54cm;
+  margin-bottom: 2.54cm;
+}
+
+@page:right {
+  @bottom-right {
+    content: "Page " counter(page) " of " counter(pages) !important;
+  }
+}
+
+@page:left {
+  @top-left {
+    content: "Philippine Green Building Council";
   }
 }

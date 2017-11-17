@@ -20,45 +20,64 @@ under the License.
 ////////////////////////////////////////////////////////////////////////////////
 // Use these settings to help adjust the appearance of Slate
 
+//GBC COLORS
+////////////
+$philgbc_blue: #2975A2 !default;
+$philgbc_green: #6FAD47 !default;
+$philgbc_red: #DE4F44 !default;
+$philgbc_yellow: #FFBA2F !default;
+
 
 // BACKGROUND COLORS
 ////////////////////
-$nav-bg: #393939 !default;
-$examples-bg: #393939 !default;
-$code-bg: #292929 !default;
-$code-annotation-bg: #1c1c1c !default;
-$nav-subitem-bg: #262626 !default;
-$nav-active-bg: #2467af !default;
+$main-bg: #fff !default;
+
+$nav-bg: #2975A2 !default;
+$nav-subitem-bg: #2975A2 !default;
+$nav-active-bg: #fff !default;
+
+$examples-bg: #2975A2 !default;
+
+$code-bg: #0D6294 !default;
+$code-annotation-bg: #0D6294 !default;
+
 $lang-select-border: #000 !default;
-$lang-select-bg: #222 !default;
+$lang-select-bg: #0D6294 !default;
 $lang-select-active-bg: $examples-bg !default; // feel free to change this to blue or something
 $lang-select-pressed-bg: #111 !default; // color of language tab bg when mouse is pressed
-$main-bg: #eaf2f6 !default;
-$aside-notice-bg: #8fbcd4 !default;
-$aside-warning-bg: #c97a7e !default;
-$aside-success-bg: #6ac174 !default;
+
+$aside-success-bg: #4E8C26;
+$aside-info-bg: $philgbc_blue;
+$aside-warning-bg: #EC9D00;
+$aside-danger-bg: $philgbc_red;
+
 $search-notice-bg: #c97a7e !default;
 
 
 // TEXT COLORS
 ////////////////////
-$main-text: #333 !default; // main content text color
+$main-text: #575757 !default; // main content text color
+
 $nav-text: #fff !default;
-$nav-active-text: #fff !default;
+$nav-active-text: #575757 !default;
+$nav-subitem-text: #fff !default;
+
 $lang-select-text: #fff !default; // color of unselected language tab text
 $lang-select-active-text: #fff !default; // color of selected language tab text
 $lang-select-pressed-text: #fff !default; // color of language tab text when mouse is pressed
 
-
 // SIZES
 ////////////////////
-$nav-width: 230px !default; // width of the navbar
-$examples-width: 50% !default; // portion of the screen taken up by code examples
+$nav-width: 280px !default; // width of the navbar
+
+$examples-width: 40% !default; // portion of the screen taken up by code examples
 $logo-margin: 20px !default; // margin between nav items and logo, ignored if search is active
 $main-padding: 28px !default; // padding to left and right of content & examples
+
 $nav-padding: 15px !default; // padding to left and right of navbar
 $nav-v-padding: 10px !default; // padding used vertically around search boxes and results
 $nav-indent: 10px !default; // extra padding for ToC subitems
+
 $code-annotation-padding: 13px !default; // padding inside code annotations
 $h1-margin-bottom: 21px !default; // padding under the largest header tags
 $tablet-width: 930px !default; // min width before reverting to tablet size
@@ -68,8 +87,9 @@ $phone-width: $tablet-width - $nav-width !default; // min width before reverting
 // FONTS
 ////////////////////
 %default-font {
-  font-family: "Helvetica Neue", Helvetica, Arial, "Microsoft Yahei","微软雅黑", STXihei, "华文细黑", sans-serif;
-  font-size: 13px;
+  font-family: Arial, "Helvetica Neue", Helvetica, "Microsoft Yahei","微软雅黑", STXihei, "华文细黑", sans-serif;
+  font-size: 14px;
+  color: #575757;
 }
 
 %header-font {
@@ -78,7 +98,7 @@ $phone-width: $tablet-width - $nav-width !default; // min width before reverting
 }
 
 %code-font {
-  font-family: Consolas, Menlo, Monaco, "Lucida Console", "Liberation Mono", "DejaVu Sans Mono", "Bitstream Vera Sans Mono", "Courier New", monospace, serif;
+  font-family: Monaco, "Andale Mono", Consolas, Arial, Menlo, "Lucida Console", "Liberation Mono", "DejaVu Sans Mono", "Bitstream Vera Sans Mono", "Courier New", monospace, serif;
   font-size: 12px;
   line-height: 1.5;
 }
@@ -86,11 +106,13 @@ $phone-width: $tablet-width - $nav-width !default; // min width before reverting
 
 // OTHER
 ////////////////////
-$nav-active-shadow: #000 !default;
+$nav-active-shadow: 0 !default;
 $nav-footer-border-color: #666 !default;
 $nav-embossed-border-top: #000 !default;
 $nav-embossed-border-bottom: #939393 !default;
-$main-embossed-text-shadow: 0px 1px 0px #fff !default;
+
+$main-embossed-text-shadow: 0px 0px 0px #fff !default;
+
 $search-box-border-color: #666 !default;
 
 
