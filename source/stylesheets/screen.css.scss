@@ -2,6 +2,7 @@
 @import 'normalize';
 @import 'variables';
 @import 'icon-font';
+@import url('https://fonts.googleapis.com/css?family=Open+Sans|Roboto|Roboto+Mono');
 
 /*
 Copyright 2008-2013 Concur Technologies, Inc.
@@ -33,6 +34,10 @@ html, body {
   background-color: $main-bg;
   height: 100%;
   -webkit-text-size-adjust: none; /* Never autoresize text */
+
+  a {
+    color: $philgbc_green;
+  }
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -41,19 +46,11 @@ html, body {
 
 #toc > ul > li > a > span {
   float: right;
-  background-color: #2484FF;
+  background-color: $philgbc_blue;
   border-radius: 40px;
   width: 20px;
 }
 
-@mixin embossed-bg {
-  background:
-    linear-gradient(to bottom, rgba(#000, 0.2), rgba(#000, 0) 8px),
-    linear-gradient(to top, rgba(#000, 0.2), rgba(#000, 0) 8px),
-    linear-gradient(to bottom, rgba($nav-embossed-border-top, 1), rgba($nav-embossed-border-top, 0) 1.5px),
-    linear-gradient(to top, rgba($nav-embossed-border-bottom, 1), rgba($nav-embossed-border-bottom, 0) 1.5px),
-    $nav-subitem-bg;
-}
 
 .tocify-wrapper {
   transition: left 0.3s ease-in-out;
@@ -67,8 +64,9 @@ html, body {
   bottom: 0;
   width: $nav-width;
   background-color: $nav-bg;
-  font-size: 13px;
+  font-size: 12px;
   font-weight: bold;
+  color: $nav-text;
 
   // language selector for mobile devices
   .lang-selector {
@@ -85,13 +83,18 @@ html, body {
     max-width: 100%;
   }
 
+  &>a>img {
+    display: block;
+    max-width: 100%;
+  }
+
   &>.search {
     position: relative;
 
     input {
       background: $nav-bg;
       border-width: 0 0 1px 0;
-      border-color: $search-box-border-color;
+      border-color: lighten($search-box-border-color, 40%);
       padding: 6px 0 6px 20px;
       box-sizing: border-box;
       margin: $nav-v-padding $nav-padding;
@@ -105,9 +108,27 @@ html, body {
       position: absolute;
       top: 17px;
       left: $nav-padding;
-      color: $nav-text;
+      color: lighten($nav-text, 20%);
       @extend %icon-search;
     }
+
+    ::-webkit-input-placeholder {
+      color: lighten($nav-text, 20%);
+      font-weight: 400;
+    }
+    :-moz-placeholder {
+      color: lighten($nav-text, 20%);
+      font-weight: 400;
+    }
+    ::-moz-placeholder {
+      color: lighten($nav-text, 20%);
+      font-weight: 400;
+    }
+    :-ms-input-placeholder {
+      color: lighten($nav-text, 20%);
+      font-weight: 400;
+    }
+
   }
 
   img+.tocify, .lang-selector+.tocify {
@@ -123,16 +144,17 @@ html, body {
     transition-property: height, margin;
     transition-duration: 180ms;
     transition-timing-function: ease-in-out;
+    background-color: darken($philgbc-blue, 10%);
     &.visible {
       height: 30%;
       margin-bottom: 1em;
     }
 
-    @include embossed-bg;
-
     li {
       margin: 1em $nav-padding;
       line-height: 1;
+      padding-top: 0.5em;
+      padding-bottom: 0.5em;
     }
 
     a {
@@ -149,10 +171,16 @@ html, body {
   .tocify-item>a, .toc-footer li {
     padding: 0 $nav-padding 0 $nav-padding;
     display: block;
+    border: 0;
     overflow-x: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
+    padding-top: 0.3em;
+    padding-bottom: 0.3em;
+    color: $nav-subitem-text;
   }
+
+
 
   // The Table of Contents is composed of multiple nested
   // unordered lists.  These styles remove the default
@@ -165,7 +193,6 @@ html, body {
   }
 
   li {
-    color: $nav-text;
     transition-property: background;
     transition-timing-function: linear;
     transition-duration: 230ms;
@@ -173,24 +200,43 @@ html, body {
 
   // This is the currently selected ToC entry
   .tocify-focus {
-    box-shadow: 0px 1px 0px $nav-active-shadow;
+    box-shadow: none;
+    border: 0;
     background-color: $nav-active-bg;
     color: $nav-active-text;
+
+    a {
+      color: $nav-active-text;
+    }
+  }
+
+  .tocify-active-header {
+    background-color: darken($nav-subitem-bg, 5%);
+    color: $nav-active-text;
+
+    .tocify-focus {
+      color: $nav-active-text;
+    }
   }
 
   // Subheaders are the submenus that slide open
   // in the table of contents.
   .tocify-subheader {
     display: none; // tocify will override this when needed
-    background-color: $nav-subitem-bg;
+    background-color: lighten($nav-subitem-bg, 8%);
     font-weight: 500;
+
     .tocify-item>a {
       padding-left: $nav-padding + $nav-indent;
       font-size: 12px;
+      color: $nav-subitem-text;
+    }
+
+    .tocify-focus>a {
+      color: $nav-active-text;
     }
 
     // for embossed look:
-    @include embossed-bg;
     &>li:last-child {
       box-shadow: none; // otherwise it'll overflow out of the subheader
     }
@@ -199,22 +245,40 @@ html, body {
   .toc-footer {
     padding: 1em 0;
     margin-top: 1em;
-    border-top: 1px dashed $nav-footer-border-color;
-
-    li,a {
-      color: $nav-text;
-      text-decoration: none;
-    }
-
-    a:hover {
-      text-decoration: underline;
-    }
+    border-top: none;
 
     li {
-      font-size: 0.8em;
-      line-height: 1.7;
-      text-decoration: none;
+
+      &>a {
+        display: block;
+        text-decoration: none;
+        color: $nav-subitem-text;
+        border: none;
+        padding: none;
+        margin: auto;
+        &:hover {color: $nav-active-text;}
+      }
+
+      &:hover {
+        box-shadow: none;
+        display: block;
+        border: 0;
+        background-color: $nav-active-bg;
+      }
     }
+  }
+
+  .toc-text {
+    padding: 0 $nav-padding;
+    border-top: none;
+    display: block;
+    font-weight: 400;
+    font-size: 11px;
+    line-height: 1.5;
+  }
+
+  .toc-footer + .toc-text {
+    padding-top: $nav-padding;
   }
 
 }
@@ -291,6 +355,8 @@ html, body {
   background-color: $lang-select-bg;
   width: 100%;
   font-weight: bold;
+  font-size: 12px;
+
   a {
     display: block;
     float:left;
@@ -356,13 +422,14 @@ html, body {
   h1 {
     @extend %header-font;
     font-size: 30px;
+    color: $philgbc_blue;
     padding-top: 0.5em;
     padding-bottom: 0.5em;
     border-bottom: 1px solid #ccc;
     margin-bottom: $h1-margin-bottom;
     margin-top: 2em;
     border-top: 1px solid #ddd;
-    background-image: linear-gradient(to bottom, #fff, #f9f9f9);
+    background-image: none;
   }
 
   h1:first-child, div:first-child + h1 {
@@ -373,12 +440,13 @@ html, body {
   h2 {
     @extend %header-font;
     font-size: 20px;
-    margin-top: 4em;
+    color: $philgbc_blue;
+    margin-top: 2em;
     margin-bottom: 0;
     border-top: 1px solid #ccc;
     padding-top: 1.2em;
-    padding-bottom: 1.2em;
-    background-image: linear-gradient(to bottom, rgba(#fff, 0.4), rgba(#fff, 0));
+    padding-bottom: 1em;
+    background-image: none;
   }
 
   // h2s right after h1s should bump right up
@@ -388,15 +456,31 @@ html, body {
     border-top: none;
   }
 
-  h3, h4, h5, h6 {
+  h3 {
     @extend %header-font;
-    font-size: 15px;
-    margin-top: 2.5em;
+    font-size: 18px;
+    margin-top: 1.8em;
     margin-bottom: 0.8em;
   }
 
-  h4, h5, h6 {
-    font-size: 10px;
+  h4 {
+    @extend %header-font;
+    font-size: 16px;
+    margin-top: 2em;
+    margin-bottom: 0.8em;
+  }
+
+  h5 {
+    @extend %header-font;
+    font-size: 16px;
+    font-style: italic;
+    margin-top: 2em;
+    margin-bottom: 0.8em;
+  }
+
+  h6 {
+    @extend %header-font;
+    font-size: 14px;
   }
 
   hr {
@@ -411,13 +495,14 @@ html, body {
     th,td {
       text-align: left;
       vertical-align: top;
-      line-height: 1.6;
+      line-height: 1.5;
     }
 
     th {
       padding: 5px 10px;
       border-bottom: 1px solid #ccc;
       vertical-align: bottom;
+      text-align: left;
     }
 
     td {
@@ -446,12 +531,13 @@ html, body {
   }
 
   p, li, dt, dd {
-    line-height: 1.6;
+    line-height: 1.5;
     margin-top: 0;
   }
 
   img {
     max-width: 100%;
+
   }
 
   code {
@@ -470,20 +556,36 @@ html, body {
   aside {
     padding-top: 1em;
     padding-bottom: 1em;
-    text-shadow: 0 1px 0 lighten($aside-notice-bg, 15%);
     margin-top: 1.5em;
     margin-bottom: 1.5em;
-    background: $aside-notice-bg;
-    line-height: 1.6;
-
-    &.warning {
-      background-color: $aside-warning-bg;
-      text-shadow: 0 1px 0 lighten($aside-warning-bg, 15%);
-    }
+    line-height: 1.5;
 
     &.success {
-      background-color: $aside-success-bg;
-      text-shadow: 0 1px 0 lighten($aside-success-bg, 15%);
+      background-color: none;
+      border-top: 1.5px solid $aside-success-bg;
+      border-bottom: 1.5px solid $aside-success-bg;
+      color: $aside-success-bg;
+    }
+
+    &.info {
+      background-color: none;
+      border-top: 1.5px solid $aside-info-bg;
+      border-bottom: 1.5px solid $aside-info-bg;
+      color: $aside-info-bg;
+    }
+
+    &.warning {
+      background-color: none;
+      border-top: 1.5px solid $aside-warning-bg;
+      border-bottom: 1.5px solid $aside-warning-bg;
+      color: $aside-warning-bg;
+    }
+
+    &.danger {
+      background-color: none;
+      border-top: 1.5px solid $aside-danger-bg;
+      border-bottom: 1.5px solid $aside-danger-bg;
+      color: $aside-danger-bg;
     }
   }
 
@@ -493,16 +595,20 @@ html, body {
     font-size: 14px;
   }
 
-  aside.notice:before {
+  aside.success:before {
+    @extend %icon-success-sign;
+  }
+
+  aside.info:before {
     @extend %icon-info-sign;
   }
 
   aside.warning:before {
-    @extend %icon-exclamation-sign;
+    @extend %icon-warning-sign;
   }
 
-  aside.success:before {
-    @extend %icon-ok-sign;
+  aside.danger:before {
+    @extend %icon-danger-sign;
   }
 
   .search-highlight {
@@ -522,10 +628,9 @@ html, body {
 
 .content {
   pre, blockquote {
-    background-color: $code-bg;
-    color: #fff;
+    background-color: $code-annotation-bg;
+    color: $main-text;
 
-    padding: 2em $main-padding;
     margin: 0;
     width: $examples-width;
 
@@ -533,16 +638,21 @@ html, body {
     clear:right;
 
     box-sizing: border-box;
-    text-shadow: 0px 1px 2px rgba(0,0,0,0.4);
+    text-shadow: none;
 
     @extend %right-col;
 
-    &>p { margin: 0; }
+    &>p {
+      margin: 0;
+    }
 
     a {
-      color: #fff;
+      color: $philgbc_blue;
       text-decoration: none;
-      border-bottom: dashed 1px #ccc;
+
+      &:hover {
+        color: $philgbc_green;
+      }
     }
   }
 
@@ -551,14 +661,37 @@ html, body {
   }
 
   blockquote {
+
     &>p {
       background-color: $code-annotation-bg;
-      border-radius: 5px;
-      padding: $code-annotation-padding;
-      color: #ccc;
-      border-top: 1px solid #000;
-      border-bottom: 1px solid #404040;
+      border-radius: 0px;
+      border: 0;
+      padding-left: $code-annotation-padding;
+      padding-right: $code-annotation-padding;
+
+      &>img {
+        padding-top: $code-annotation-padding;
+      }
     }
+
+    h1, h2, h3, h4, h5, h6 {
+      padding-left: $code-annotation-padding;
+      padding-right: $code-annotation-padding;
+    }
+
+    &>table {
+      margin-left: $code-annotation-padding;
+      margin-right: $code-annotation-padding;
+    }
+
+    code {
+      background-color: darken(#468CB5, 5%);
+    }
+
+    ul {
+      padding-left: 48px;
+    }
+
   }
 }
 
@@ -589,6 +722,7 @@ html, body {
     padding-top: 0.3em;
     padding-bottom: 0.3em;
   }
+
 }
 
 @media (max-width: $phone-width) {
@@ -624,4 +758,81 @@ html, body {
 
 .highlight, .highlight .w {
   background-color: $code-bg;
+}
+
+// Additional CSS //
+figure {
+  margin: 0 $examples-width 0 0;
+  padding-top: 2.2em;
+  padding-bottom: 2em;
+
+  @media (max-width: $tablet-width) {
+    padding-top: 5.5em;
+  }
+
+  @media (max-width: $phone-width) {
+    margin: 0 0;
+    padding-top: 5.5em;
+  }
+}
+
+.t1 {
+  font-size: 36px;
+  padding-left: 28px;
+  margin-right: $examples-width;
+  line-height: 0.95;
+}
+
+.t2 {
+  font-size: 30px;
+  padding-left: 28px;
+  margin-right: $examples-width;
+  line-height: 0.95;
+}
+
+.t3 {
+  font-size: 20px;
+  padding-left: 28px;
+  margin-right: $examples-width;
+  line-height: 1.5;
+}
+.t4 {
+  font-size: 13px;
+  padding-left: 28px;
+  margin-right: $examples-width;
+  line-height: 1;
+}
+
+.berde {
+  color: $philgbc_blue;
+  font-size: 42px;
+  letter-spacing: -2px;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.green {
+  color: $philgbc_green;
+  letter-spacing: -1px;
+  text-transform: uppercase;
+}
+
+.blue {
+  color: $philgbc_blue;
+  letter-spacing: -1px;
+  text-transform: uppercase;
+}
+
+.yellow {
+  color: $philgbc_yellow;
+  letter-spacing: -1px;
+  text-transform: uppercase;
+}
+
+pre {
+  white-space: normal;;       /* css-3 */
+  white-space: -moz-normal;  /* Mozilla, since 1999 */
+  white-space: -noraml;      /* Opera 4-6 */
+  white-space: -o-normal;    /* Opera 7 */
+  word-wrap: normal;       /* Internet Explorer 5.5+ */
 }
