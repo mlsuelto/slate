@@ -1,7 +1,7 @@
 # About _**BERDE** GBRS - New Construction_
 _**BERDE** GBRS – New Construction (BERDE-NC)_ is the green building rating scheme developed for the design and construction of new building projects.
 
-<aside class="success"><p>The current version of <i>BERDE-NC</i> is <a href="index.html"><i><b>BERDE</b> GBRS – New Construction – v2.0.0</i></a> approved by the Board of Trustees, and officially released last 21 November 2017.</p>
+<aside class="success"><p>The current version of <i>BERDE-NC</i> is <a href="http://docs.berdeonline.org/ratingschemes/v2.0.0/berde-nc"><i><b>BERDE</b> GBRS – New Construction – v2.0.0</i></a> approved by the Board of Trustees, and officially released last 21 November 2017.</p>
 <p>This version of <i>BERDE-NC</i> is applicable to:
 <ul>
   <li>Commercial buildings,</li>
@@ -50,4 +50,4 @@ The points for _BERDE-NC_ is distributed among the different categories
 
 Your project must achieve a 51 points to receive the minimum rating.  See [_**BERDE**_ Rating](/#what-is-the-minimum-rating-for-certification)
 
-<aside class="info">Download the <a href="index.html"><i>Template – BERDE-NC Scoresheet</i> here.</a></aside>
+<aside class="info">Download the <a href="http://docs.berdeonline.org/templates/berde-nc-v2.0.0-scoresheet"><i>Template – BERDE-NC v2.0.0 Scoresheet</i> here.</a></aside>

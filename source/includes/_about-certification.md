@@ -29,8 +29,8 @@ The project owner must review the eligibility of the project for the applicable 
 
 The Registration process is completed once the project owner accepted and signed the proposal, and paid the registration fee and downpayment for your project.
 
-<aside class="info"><p>Download the <a href="index.html"><i>Form – BERDE Registration</i> here</a>.</p>
-<p>Download the <a href="index.html"><i>List – BERDE Certification Fee Rate</i> here</a>.</aside>
+<aside class="info"><p>Download the <a href="http://docs.berdeonline.org/forms/registration"><i>Form – BERDE Registration</i> here</a>.</p>
+<p>Download the <a href="http://docs.berdeonline.org/fees"><i>Reference – BERDE Certification Fee Rate</i> here</a>.</aside>
 <aside class="warning">The PHILGBC will confirm the <i><b>BERDE</b> GBRS</i> applicable to your project upon submission of your registration application.</aside>
 
 ### Stage 1

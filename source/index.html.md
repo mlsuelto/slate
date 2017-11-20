@@ -1,5 +1,5 @@
 ---
-title: BERDE GBRS – New Construction – Version 2.0.0
+title: BERDE GBRS – New Construction – Version 2.0.0 User Guide Release 1.0
 
 language_tabs:
   - shell: Addenda
